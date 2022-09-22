@@ -1,61 +1,41 @@
 #include "main.h"
-#include <stdio.h>
 
 /**
- * print_line - prints a s bytes of a buffer
- * @c: buffer to print
- * @s: bytes of buffer to print
- * @l: line of buffer to print
- *
- * Return: void
+ *  _strcmp - Function which compare two strings and
+ *@s1: first string
+ *@s2:second string
+ *Return:
+ *		returns zero if s1 == s2
+ *		returns negative number if s1 < s2
+ *		returns positive number if s1 > s2
  */
 
-void print_line(char *c, int s, int l)
+int _strcmp(char *s1, char *s2)
 {
-	int j, k;
+	int i = 0, diff = 0;
 
-	for (j = 0; j <= 9; j++)
+	while (1)
 	{
-		if (j <= s)
-			printf("%02x", c[l * 10 + j]);
-		else
-			printf("  ");
-		if (j % 2)
-			putchar(' ');
-	}
-	for (k = 0; k <= s; k++)
-	{
-		if (c[l * 10 + k] > 31 && c[l * 10 + k] < 127)
-			putchar(c[l * 10 + k]);
-		else
-			putchar('.');
-	}
-}
-
-/**
- * print_buffer - prints a buffer
- * @b: buffer to print
- * @size: size of buffer
- *
- * Return: void
- */
-void print_buffer(char *b, int size)
-{
-	int i;
-
-	for (i = 0; i <= (size - 1) / 10 && size; i++)
-	{
-		printf("%08x: ", i * 10);
-		if (i < size / 10)
+		if (s1[i] == '\0' && s2[i] == '\0')
+			break;
+		else if (s1[i] == '\0')
 		{
-			print_line(b, 9, i);
+			diff = s2[i];
+			break;
+		}
+		else if (s2[i] == '\0')
+		{
+			diff = s1[i];
+			break;
+		}
+		else if (s1[i] != s2[i])
+		{
+			diff = s1[i] - s2[i];
+			break;
 		}
 		else
-		{
-			print_line(b, size % 10 - 1, i);
-		}
-		putchar('\n');
+			i++;
+
 	}
-	if (size == 0)
-		putchar('\n');
+	return (diff);
 }
