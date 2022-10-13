@@ -10,14 +10,14 @@ void print_strings(const char *separator, const unsigned int n, ...);
 void print_all(const char * const format, ...);
 
 /**
- *  * struct get_type - struct definition
- *   * @s: character type
- *    * @func: funtion to carry out operation
- *     */
+ * struct get_type - struct definition
+ * @s: character type
+ * @func: funtion to carry out operation
+ */
 typedef struct types
 {
-		char *s;
-			void (*func)(va_list arg_ptr);
+	char *s;
+	void (*func)(va_list arg_ptr);
 } get_type;
 
 #endif
